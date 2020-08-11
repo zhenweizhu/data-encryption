@@ -1,0 +1,15 @@
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /@spring.profiles.active@-api
+
+mybatis:
+  bean:
+    encrypt: true
+    decrypt: true
+
+ciphertext:
+  operation:
+    key: qwerty@1234!

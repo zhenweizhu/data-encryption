@@ -1,0 +1,23 @@
+mybatis:
+  configuration:
+    # 开启驼峰命名转换
+    map-underscore-to-camel-case: true
+    # 打印日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭懒加载
+    lazy-loading-enabled: false
+    # 设置关联对象为按需加载字段
+    aggressive-lazy-loading: false
+  mapper-locations: classpath:mapper/**/*.xml
+
+# pageHelper分页插件
+pagehelper:
+  # 配置数据库方言，不配置也行，分页插件会自动检测当前的数据库链接，自动选择合适的分页方式，
+  # 使用 SqlServer2012 数据库时，需要手动指定为 SqlServer2012，否则会使用 SqlServer2005 的方式进行分页。
+  helper-dialect: mysql
+  # 分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页，
+  # pageNum>pages（超过总数时），会查询最后一页。默认false 时，直接根据参数进行查询。
+  reasonable: true
+  # 默认值为 false，当该参数设置为 true 时，如果 pageSize=0 或者 RowBounds.limit = 0 ,
+  # 就会查询出全部的结果（相当于没有执行分页查询，但是返回结果仍然是 Page 类型）
+  page-size-zero: true

@@ -34,7 +34,7 @@ public class ResponseEncryptFilter implements Filter {
 
     private final static String SYMBOL_EQUAL = "=";
 
-    @Value("${ciphertext.operation.key:ruoyi20200528code!}")
+    @Value("${ciphertext.operation.key:qwerty@1234!}")
     private String secretKey;
 
 
