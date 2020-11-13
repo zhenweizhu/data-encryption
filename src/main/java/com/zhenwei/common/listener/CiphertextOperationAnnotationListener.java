@@ -3,6 +3,7 @@ package com.zhenwei.common.listener;
 import com.zhenwei.common.annotation.CiphertextOperation;
 import com.zhenwei.common.annotation.DataDecrypt;
 import com.zhenwei.common.annotation.DataEncrypt;
+import com.zhenwei.common.util.AopTargetUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
@@ -41,6 +42,11 @@ public class CiphertextOperationAnnotationListener implements ApplicationListene
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         Map<String,Object> beans = contextRefreshedEvent.getApplicationContext().getBeansWithAnnotation(CiphertextOperation.class);
         for (Object bean : beans.values()) {
+            try {
+                bean = AopTargetUtils.getTarget(bean);
+            } catch (Exception ex){
+                //异常处理
+            }
             RequestMapping beanRequestMapping = bean.getClass().getAnnotation(RequestMapping.class);
             String beanRequestUrl = "";
             if (null != beanRequestMapping) {
